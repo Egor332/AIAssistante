@@ -1,8 +1,8 @@
 ﻿using BackEnd.Models.Gemini;
 using BackEnd.Services.Abstractions;
 using System.Text.Json;
-using System.Text;
-using System;
+using BackEnd.DTOs;
+using BackEnd.Mappers.Abstractions;
 
 namespace BackEnd.Services.Implementations
 {
@@ -10,8 +10,9 @@ namespace BackEnd.Services.Implementations
     {
         private readonly HttpClient _httpClient;
         private readonly string _curlWithApiKey;
+        private readonly IMapper _mapper;
 
-        public GeminiService(HttpClient httpClient, IConfiguration configuration)
+        public GeminiService(HttpClient httpClient, IConfiguration configuration, IMapper mapper)
         {
             _httpClient = httpClient;
             var curlBase = configuration["LLM:curl"];
@@ -21,21 +22,12 @@ namespace BackEnd.Services.Implementations
                 throw new InvalidOperationException("Missing LLM configuration data");
             }
             _curlWithApiKey = curlBase + apiKey;
+            _mapper = mapper;
         }
 
-        public async Task<string> SendMessageAsync(string userMessage)
+        public async Task<string> SendMessageAsync(ChatHistoryDto chatHistoryDto)
         {
-            var request = new GeminiRequest
-            {
-                Contents = new List<GeminiContent>
-            {
-                new GeminiContent
-                {
-                    Role = "user",
-                    Parts = new List<GeminiPart> { new GeminiPart { Text = userMessage } }
-                }
-                }
-            };
+            var request = _mapper.ChatHistoryDtoToLLMRequest(chatHistoryDto);
 
             var response = await _httpClient.PostAsJsonAsync(_curlWithApiKey, request);
 
