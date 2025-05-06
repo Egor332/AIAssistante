@@ -1,5 +1,9 @@
+using BackEnd.Mappers.Abstractions;
+using BackEnd.Mappers.Implementations;
+using BackEnd.Services.Abstractions;
+using BackEnd.Services.Implementations;
 
-namespace back_end
+namespace BackEnd
 {
     public class Program
     {
@@ -13,6 +17,10 @@ namespace back_end
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+            builder.Services.AddScoped<IMapper, GeminiMapper>();
+            builder.Services.AddHttpClient<ILLMService, GeminiService>();
+            builder.Services.AddScoped<ILLMResponseAnalyserService, LLMResponseAnalyserService>();
+            builder.Services.AddTransient<IFormSubmissionService, FormSubmissionService>();
 
             var app = builder.Build();
 
