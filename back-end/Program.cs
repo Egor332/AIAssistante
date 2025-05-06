@@ -1,5 +1,4 @@
-
-namespace back_end
+namespace BackEnd
 {
     public class Program
     {
