@@ -15,7 +15,9 @@ namespace BackEnd.Mappers.Implementations
            "3) Email (valid format),\r\n" +
            "4) Problem description (max 100 chars),\r\n" +
            "5) Urgency (integer 1–10).\r\n" +
-           "After collecting all and verifying it with the user, respond ONLY with JSON:\r\n{ name, surname, email, description, urgency }."
+           "After collecting all and verifying it with the user, respond with JSON:\r\n{ name, surname, email, description, urgency }. Respond with **only pure JSON** between `[JSON_START]` and `[JSON_END]` markers.  \r\n> " +
+            "**Do not wrap JSON in triple backticks.**  \r\n> " +
+            "**Do not include markdown or explanations.** "
         };
 
         public GeminiRequest ChatHistoryDtoToLLMRequest(ChatHistoryDto dto)

@@ -19,6 +19,8 @@ namespace BackEnd
             builder.Services.AddSwaggerGen();
             builder.Services.AddScoped<IMapper, GeminiMapper>();
             builder.Services.AddHttpClient<ILLMService, GeminiService>();
+            builder.Services.AddScoped<ILLMResponseAnalyserService, LLMResponseAnalyserService>();
+            builder.Services.AddTransient<IFormSubmissionService, FormSubmissionService>();
 
             var app = builder.Build();
 
