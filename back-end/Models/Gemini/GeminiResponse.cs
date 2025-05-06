@@ -1,4 +1,4 @@
-﻿namespace back_end.Models.Gemini
+﻿namespace BackEnd.Models.Gemini
 {
     public class GeminiResponse
     {

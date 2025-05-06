@@ -1,3 +1,6 @@
+using BackEnd.Services.Abstractions;
+using BackEnd.Services.Implementations;
+
 namespace BackEnd
 {
     public class Program
@@ -12,6 +15,8 @@ namespace BackEnd
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddHttpClient<ILLMService, GeminiService>();
 
             var app = builder.Build();
 
