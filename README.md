@@ -1,9 +1,4 @@
-# Google Gemini Web Application
-
-![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
-![React](https://img.shields.io/badge/React-18-blue)
-![Docker Compose](https://img.shields.io/badge/Docker--Compose-Ready-brightgreen)
-![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)
+# Google Gemini Assistant Web Application
 
 This project is designed to interact with Google's Gemini model, featuring:
 - **Back-end**: ASP.NET Web API
@@ -14,7 +9,9 @@ This project is designed to interact with Google's Gemini model, featuring:
 ## Project Structure
 
 /BackEnd → ASP.NET Web API project
+
 /FrontEnd → React + Vite front-end project
+
 docker-compose.yml → For running the entire stack via Docker
 
 
@@ -41,6 +38,6 @@ Open a terminal in the **main project directory** and run:
 
 ```sh
 docker-compose up -d
-
+```
 Once the containers are running, open your browser and go to:
 http://localhost:5173
