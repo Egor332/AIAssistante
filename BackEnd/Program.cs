@@ -21,6 +21,21 @@ namespace BackEnd
             builder.Services.AddHttpClient<ILLMService, GeminiService>();
             builder.Services.AddScoped<ILLMResponseAnalyserService, LLMResponseAnalyserService>();
             builder.Services.AddTransient<IFormSubmissionService, FormSubmissionService>();
+            
+            var configuration = builder.Configuration;           
+            var allowedOrigins = configuration["AllowedOrigins"]?.Split(',');
+
+            if (allowedOrigins != null)
+                builder.Services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy", corsPolicyBuilder =>
+                    {
+                        corsPolicyBuilder.WithOrigins(allowedOrigins)
+                            .AllowAnyMethod()
+                            .AllowAnyHeader()
+                            .AllowCredentials();
+                    });
+                });
 
             var app = builder.Build();
 
