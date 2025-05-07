@@ -46,16 +46,29 @@ const Chat: React.FC = () => {
                 body: JSON.stringify(chatHistory),
             });
 
+            let assistantMessage: Message;
+
             if (!response.ok) {
-                console.log("Something went wrong");
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch {
+                    errorData = { errorMessage: "Unknown error occurred." };
+                }
+
+                console.error("API Error:", errorData);
+
+                assistantMessage = {
+                    role: 'model',
+                    text: errorData.message || "Sorry, an error occurred. Please try again."
+                };
+            } else {
+                const text = await response.text();
+                assistantMessage = {
+                    role: 'model',
+                    text: text
+                };
             }
-
-            const text = await response.text();
-
-            const assistantMessage: Message = {
-                role: 'model',
-                text: text
-            };
             setMessages([...updatedMessages, assistantMessage]);
         } catch (error) {
             console.error('Error:', error);
