@@ -6,6 +6,15 @@ This project is designed to interact with Google's Gemini model, featuring:
 
 ---
 
+## Cloning the Repository
+
+First, clone the repository to your local machine:
+
+```sh
+git clone https://github.com/Egor332/AIAssistante
+cd AIAssistante
+```
+
 ## Project Structure
 
 /BackEnd → ASP.NET Web API project
@@ -41,5 +50,7 @@ docker-compose up -d
 ```
 Once the containers are running, open your browser and go to:
 http://localhost:5173
+
+You can use the chat on the front-end to communicate with the assistant.
 
 > **Note:** Sometimes it takes a few seconds for the back-end to start, and it may not respond to a message within the first few seconds. You can try again a few seconds later. 
