@@ -50,7 +50,7 @@ const Chat: React.FC = () => {
                 console.log("Something went wrong");
             }
 
-            const text = await response.json();
+            const text = await response.text();
 
             const assistantMessage: Message = {
                 role: 'model',

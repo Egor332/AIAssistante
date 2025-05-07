@@ -32,8 +32,7 @@ namespace BackEnd
                     {
                         corsPolicyBuilder.WithOrigins(allowedOrigins)
                             .AllowAnyMethod()
-                            .AllowAnyHeader()
-                            .AllowCredentials();
+                            .AllowAnyHeader();
                     });
                 });
 
@@ -46,11 +45,12 @@ namespace BackEnd
                 app.UseSwaggerUI();
             }
 
+            app.UseCors("CorsPolicy");
+
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
-
+                     
             app.MapControllers();
 
             app.Run();
