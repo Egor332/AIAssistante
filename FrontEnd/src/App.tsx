@@ -1,13 +1,17 @@
-import './App.css'
+import React from 'react';
+import Chat from './Chat';
 
-function App() {
-
-
-  return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-blue-500 to-purple-600">
-        <h1 className="text-4xl font-bold text-white">Hello Tailwind + React + Vite + TS!</h1>
-      </div>
-  );
-}
+const App: React.FC = () => {
+    return (
+        <div className="bg-gray-50 min-h-screen">
+            <header className="bg-white shadow p-4">
+                <h1 className="text-xl font-bold text-center text-gray-800">Chat with Assistant</h1>
+            </header>
+            <main>
+                <Chat />
+            </main>
+        </div>
+    );
+};
 
 export default App
