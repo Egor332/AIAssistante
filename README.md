@@ -41,3 +41,5 @@ docker-compose up -d
 ```
 Once the containers are running, open your browser and go to:
 http://localhost:5173
+
+> **Note:** Sometimes it takes a few seconds for the back-end to start, and it may not respond to a message within the first few seconds. You can try again a few seconds later. 
